@@ -1,0 +1,36 @@
+name: Build add-on
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Build
+        run: python build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nvda-addon
+          path: "*.nvda-addon"
+      - name: Check the tag matches the add-on version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: test "v$(python build.py --version)" = "$GITHUB_REF_NAME"
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" *.nvda-addon --title "Progress Pulse $GITHUB_REF_NAME" --generate-notes
