@@ -65,6 +65,10 @@ NVDA 2022.1 or later, including NVDA 2023.3 for Windows 7 and 8. The add-on was 
 
 ## Changes
 
+### Version 1.1.1
+
+* Fixed: if a sound ever failed to play in "Beep and speak" mode, NVDA could skip speaking that percentage. NVDA's speech now always continues.
+
 ### Version 1.1.0
 
 * 9 new built-in sounds: Kalimba, Glass tap, Wood knock, Soft pluck, Pop, Rising whoosh, Ding-dong, Single bell and Level complete.

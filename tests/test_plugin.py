@@ -194,6 +194,21 @@ class PluginTests(unittest.TestCase):
 		self.assertEqual([round(hz) for hz in beeps], [440])
 		self.assertEqual(self.played, [])
 
+	def test_speechContinuesWhenSoundFails(self):
+		spoken = []
+
+		def nvdaBeepThenSpeak(bar):
+			# Like NVDA in "Beep and speak" mode: beep first, then speak the percentage.
+			sys.modules["tones"].beep(110 * 2 ** (50 / 25.0), 40)
+			spoken.append(bar.value)
+
+		self.addCleanup(setattr, progressPulse, "_originalEventValueChange", progressPulse._originalEventValueChange)
+		self.addCleanup(setattr, progressPulse, "playSound", progressPulse.playSound)
+		progressPulse._originalEventValueChange = nvdaBeepThenSpeak
+		progressPulse.playSound = lambda *args, **kwargs: 1 / 0
+		progressPulse._eventValueChange(FakeProgressBar(50))
+		self.assertEqual(spoken, ["50%"])
+
 	def test_differentBarsTooCloseTogetherAreSkipped(self):
 		FakeProgressBar(20, location=(0, 0, 100, 10)).event_valueChange()
 		FakeProgressBar(60, location=(0, 50, 100, 10)).event_valueChange()

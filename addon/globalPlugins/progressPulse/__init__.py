@@ -508,7 +508,11 @@ def _eventValueChange(self):
 	def progressBeep(hz, length, *args, **kwargs):
 		if threading.get_ident() != mainThread:
 			return realBeep(hz, length, *args, **kwargs)
-		replacement(hz)
+		try:
+			replacement(hz)
+		except Exception:
+			# Never let a sound problem stop NVDA from speaking the percentage that comes after the beep.
+			log.exception("Progress Pulse couldn't play a progress sound")
 
 	tones.beep = progressBeep
 	try:
