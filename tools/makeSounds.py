@@ -99,12 +99,170 @@ def chime():
 	return out
 
 
+def bandpass(samples, cutoffs, q):
+	"""A resonant filter whose centre frequency can move, for whooshes and knocks."""
+	low = band = 0.0
+	out = []
+	for x, cutoff in zip(samples, cutoffs):
+		f = 2 * math.sin(math.pi * min(cutoff, 6000) / RATE)
+		low += f * band
+		high = x - low - band / q
+		band += f * high
+		out.append(band)
+	return out
+
+
+def bellNote(freq, duration, ring, brightness=1.0):
+	"""A soft bell: a few uneven overtones that fade at different speeds."""
+	out = []
+	for t in times(duration):
+		value = math.sin(2 * math.pi * freq * t) * math.exp(-t * 6.9 / ring)
+		value += 0.25 * brightness * math.sin(2 * math.pi * freq * 2.76 * t) * math.exp(-t * 6.9 / (ring * 0.35))
+		value += 0.1 * brightness * math.sin(2 * math.pi * freq * 5.4 * t) * math.exp(-t * 6.9 / (ring * 0.15))
+		out.append(value * min(1.0, t / 0.003))
+	return out
+
+
+def mix(length, *parts):
+	"""Mix (start time, samples) pairs into one sound."""
+	out = [0.0] * int(RATE * length)
+	for start, samples in parts:
+		offset = int(RATE * start)
+		for i, value in enumerate(samples[: len(out) - offset]):
+			out[offset + i] += value
+	return out
+
+
+def heartbeat():
+	"""A soft heartbeat, "thump-thump". Low thuds with a little higher body so small speakers play them."""
+
+	def thump(level):
+		out = []
+		phase = 0.0
+		for t in times(0.16):
+			phase += 2 * math.pi * (70 + 80 * math.exp(-t / 0.02)) / RATE
+			body = math.sin(phase) + 0.6 * math.sin(2 * phase) + 0.3 * math.sin(3 * phase)
+			out.append(level * body * min(1.0, t / 0.004) * math.exp(-t / 0.045))
+		return out
+
+	return mix(0.42, (0.0, thump(1.0)), (0.2, thump(0.7)))
+
+
+def kalimba(freq=659.26):
+	"""A thumb piano note: a pure, sweet tone with a quick metallic overtone at the start."""
+	out = []
+	for t in times(0.6):
+		value = math.sin(2 * math.pi * freq * t) * math.exp(-t * 6.9 / 0.55)
+		value += 0.3 * math.sin(2 * math.pi * freq * 5.9 * t) * math.exp(-t * 6.9 / 0.05)
+		out.append(value * min(1.0, t / 0.002))
+	return out
+
+
+def glassTap(freq=1396.9):
+	"""A light tap on a glass: a clear high ring with a gentle shimmer."""
+	out = []
+	for t in times(0.45):
+		value = (math.sin(2 * math.pi * freq * t) + math.sin(2 * math.pi * freq * 1.003 * t)) * math.exp(-t * 6.9 / 0.4)
+		value += 0.3 * math.sin(2 * math.pi * freq * 2.71 * t) * math.exp(-t * 6.9 / 0.1)
+		out.append(value * min(1.0, t / 0.001))
+	return out
+
+
+def woodKnock():
+	"""A soft knock on wood: two low resonances that stop almost at once."""
+	rng = random.Random(3)
+	hit = [rng.random() * 2 - 1 for _ in range(int(RATE * 0.12))]
+	hit = [x * math.exp(-i / RATE / 0.004) for i, x in enumerate(hit)]
+	body = bandpass(hit, [420] * len(hit), 12)
+	ring = bandpass(hit, [1150] * len(hit), 10)
+	return [b + 0.4 * r for b, r in zip(body, ring)]
+
+
+def softPluck(freq=329.63, duration=0.55):
+	"""A gentle guitar string pluck (Karplus-Strong): a burst of noise circling a short loop, mellowing as it goes."""
+	rng = random.Random(4)
+	period = int(RATE / freq)
+	loop = [rng.random() * 2 - 1 for _ in range(period)]
+	# Soften the pluck so it sounds like a fingertip rather than a pick.
+	for _ in range(3):
+		loop = [(loop[i] + loop[i - 1]) / 2 for i in range(period)]
+	# Centre the loop on zero, or the string would carry a constant offset that wastes loudness.
+	average = sum(loop) / period
+	loop = [x - average for x in loop]
+	out = []
+	for i in range(int(RATE * duration)):
+		value = loop[i % period]
+		loop[i % period] = 0.996 * 0.5 * (value + loop[(i + 1) % period])
+		out.append(value)
+	return out
+
+
+def pop():
+	"""A tiny soft pop, like a small bubble bursting."""
+	out = []
+	phase = 0.0
+	for t in times(0.05):
+		phase += 2 * math.pi * (300 + 700 * min(1.0, t / 0.012)) / RATE
+		out.append(math.sin(phase) * min(1.0, t / 0.002) * math.exp(-t / 0.012))
+	return out
+
+
+def risingWhoosh():
+	"""A short airy sweep upward, for when something starts."""
+	rng = random.Random(5)
+	duration = 0.45
+	noise = [rng.random() * 2 - 1 for _ in range(int(RATE * duration))]
+	cutoffs = [300 * (10 ** (i / len(noise))) for i in range(len(noise))]
+	air = bandpass(noise, cutoffs, 3)
+	out = []
+	for i, value in enumerate(air):
+		t = i / RATE
+		shape = min(1.0, t / 0.3) * min(1.0, (duration - t) / 0.08)
+		out.append(value * shape)
+	return out
+
+
+def dingDong():
+	"""Two soft bell notes, high then low, for the halfway point."""
+	return mix(1.05, (0.0, bellNote(659.26, 0.7, 0.6)), (0.3, bellNote(523.25, 0.75, 0.7)))
+
+
+def singleBell():
+	"""One clear, calm bell, for when something finishes."""
+	return bellNote(880.0, 1.5, 1.3)
+
+
+def levelComplete():
+	"""A quick happy rise of four notes (C, E, G, high C), like finishing a level in a game."""
+	notes = (523.25, 659.26, 783.99, 1046.5)
+	parts = []
+	for n, freq in enumerate(notes):
+		last = n == len(notes) - 1
+		length = 0.45 if last else 0.12
+		tone = []
+		for t in times(length):
+			value = math.sin(2 * math.pi * freq * t) + 0.3 * math.sin(6 * math.pi * freq * t) + 0.12 * math.sin(10 * math.pi * freq * t)
+			tone.append(value * min(1.0, t / 0.004) * math.exp(-t * 6.9 / (0.45 if last else 0.2)))
+		parts.append((0.09 * n, tone))
+	return mix(0.09 * 3 + 0.45, *parts)
+
+
 def main():
 	write("drop", drop())
 	write("tick", tick(), peak=0.5)
 	write("marimba", marimba())
 	write("bubble", bubble())
 	write("chime", chime(), peak=0.5)
+	write("heartbeat", heartbeat(), peak=0.75)
+	write("kalimba", kalimba())
+	write("glass", glassTap(), peak=0.45)
+	write("wood", woodKnock(), peak=0.85)
+	write("pluck", softPluck())
+	write("pop", pop(), peak=0.5)
+	write("whoosh", risingWhoosh(), peak=0.5)
+	write("dingdong", dingDong(), peak=0.5)
+	write("bell", singleBell(), peak=0.5)
+	write("levelup", levelComplete(), peak=0.45)
 	print(f"Sounds written to {os.path.normpath(SOUNDS_DIR)}")
 
 

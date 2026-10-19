@@ -67,7 +67,27 @@ BUILT_IN_SOUNDS = (
 	# Translators: name of a built-in sound.
 	("bubble", _("Bubble")),
 	# Translators: name of a built-in sound.
+	("heartbeat", _("Heartbeat")),
+	# Translators: name of a built-in sound.
+	("kalimba", _("Kalimba")),
+	# Translators: name of a built-in sound.
+	("glass", _("Glass tap")),
+	# Translators: name of a built-in sound.
+	("wood", _("Wood knock")),
+	# Translators: name of a built-in sound.
+	("pluck", _("Soft pluck")),
+	# Translators: name of a built-in sound.
+	("pop", _("Pop")),
+	# Translators: name of a built-in sound, suited to when a progress bar starts.
+	("whoosh", _("Rising whoosh")),
+	# Translators: name of a built-in sound, suited to the halfway point.
+	("dingdong", _("Ding-dong")),
+	# Translators: name of a built-in sound, suited to when a progress bar finishes.
 	("chime", _("Success chime")),
+	# Translators: name of a built-in sound, suited to when a progress bar finishes.
+	("bell", _("Single bell")),
+	# Translators: name of a built-in sound, suited to when a progress bar finishes.
+	("levelup", _("Level complete")),
 )
 # Rendered sounds are cached so repeated progress values don't have to be processed again.
 CACHE_LIMIT_BYTES = 32 * 1024 * 1024
