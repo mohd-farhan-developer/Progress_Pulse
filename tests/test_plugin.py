@@ -194,11 +194,18 @@ class PluginTests(unittest.TestCase):
 		self.assertEqual([round(hz) for hz in beeps], [440])
 		self.assertEqual(self.played, [])
 
-	def test_tooCloseTogetherIsSkipped(self):
-		FakeProgressBar(20).event_valueChange()
-		FakeProgressBar(21).event_valueChange()
+	def test_differentBarsTooCloseTogetherAreSkipped(self):
+		FakeProgressBar(20, location=(0, 0, 100, 10)).event_valueChange()
+		FakeProgressBar(60, location=(0, 50, 100, 10)).event_valueChange()
 		time.sleep(0.2)
 		self.assertEqual(len(FakeWavePlayer.fed), 1)
+
+	def test_oneFastBarPlaysEveryStep(self):
+		# A progress bar moving 1% at a time faster than the gap still gets a sound for every step,
+		# following NVDA's beep interval.
+		for percent in range(20, 31):
+			FakeProgressBar(percent).event_valueChange()
+		self.assertEqual(self.played, list(range(20, 31)))
 
 	def test_milestoneSoundsAlwaysPlay(self):
 		FakeProgressBar(98).event_valueChange()

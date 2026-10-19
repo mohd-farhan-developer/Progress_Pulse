@@ -67,8 +67,6 @@ BUILT_IN_SOUNDS = (
 	# Translators: name of a built-in sound.
 	("bubble", _("Bubble")),
 	# Translators: name of a built-in sound.
-	("heartbeat", _("Heartbeat")),
-	# Translators: name of a built-in sound.
 	("kalimba", _("Kalimba")),
 	# Translators: name of a built-in sound.
 	("glass", _("Glass tap")),
@@ -91,7 +89,8 @@ BUILT_IN_SOUNDS = (
 )
 # Rendered sounds are cached so repeated progress values don't have to be processed again.
 CACHE_LIMIT_BYTES = 32 * 1024 * 1024
-# Regular sounds closer together than this are skipped, so several busy progress bars don't sound choppy.
+# When several progress bars are busy, a regular sound from a different bar closer than this to the last
+# sound is skipped, so they don't sound choppy. One progress bar always follows NVDA's own interval.
 MIN_GAP_SECONDS = 0.12
 # How many sounds can play at the same time when overlapping is on.
 OVERLAP_CHANNELS = 3
@@ -301,13 +300,17 @@ class SoundOutput:
 		self._channels = []
 		self._next = 0
 		self._lastPlayed = 0.0
+		self._lastSource = None
 
-	def play(self, sound, pitch, left, right, overlap=False, important=False):
-		"""@param important: milestone and preview sounds, which are never skipped."""
+	def play(self, sound, pitch, left, right, overlap=False, important=False, source=None):
+		"""@param important: milestone and preview sounds, which are never skipped.
+		@param source: which progress bar the sound is for.
+		"""
 		now = time.monotonic()
-		if not important and now - self._lastPlayed < MIN_GAP_SECONDS:
+		if not important and source != self._lastSource and now - self._lastPlayed < MIN_GAP_SECONDS:
 			return
 		self._lastPlayed = now
+		self._lastSource = source
 		count = OVERLAP_CHANNELS if overlap else 1
 		while len(self._channels) < count:
 			self._channels.append(Channel(self._cache))
@@ -417,7 +420,7 @@ _announcer = FinishAnnouncer()
 _output = None
 
 
-def playSound(sound, percent, settings, important=False, followPitch=True):
+def playSound(sound, percent, settings, important=False, followPitch=True, source=None):
 	"""Play sound for a progress percentage.
 	@param settings: a mapping like the config section (the settings panel passes its unsaved values).
 	@param followPitch: False plays the file at its own pitch, used for milestone sounds.
@@ -426,7 +429,7 @@ def playSound(sound, percent, settings, important=False, followPitch=True):
 		return
 	pitchRange = PITCH_CHANGES.get(settings["pitchChange"], 0) if followPitch else 0
 	pitch, left, right = audio.soundParams(percent, pitchRange, settings["stereoPan"], settings["volume"])
-	_output.play(sound, pitch, left, right, overlap=settings["overlap"], important=important)
+	_output.play(sound, pitch, left, right, overlap=settings["overlap"], important=important, source=source)
 
 
 def _percentage(obj):
@@ -468,7 +471,7 @@ def _handleUpdate(obj):
 	milestone = _loader.load(conf[MILESTONE_SOUNDS[event]]) if event else None
 	if milestone:
 		# Milestones always play, even when NVDA wouldn't beep for this small a change.
-		playSound(milestone, percent, conf, important=True, followPitch=False)
+		playSound(milestone, percent, conf, important=True, followPitch=False, source=key)
 		return lambda hz: None
 	if not conf[REGULAR]:
 		# No regular sound chosen: progress is silent apart from the start, halfway and finished sounds.
@@ -481,7 +484,7 @@ def _handleUpdate(obj):
 
 	def playRegular(hz):
 		# NVDA's beep is minHz * 2 ** (percent / 25); turn it back into a percentage.
-		playSound(regular, 25 * math.log2(hz / minHz) if hz > 0 else 0, conf, important=important)
+		playSound(regular, 25 * math.log2(hz / minHz) if hz > 0 else 0, conf, important=important, source=key)
 
 	return playRegular
 

@@ -5,12 +5,12 @@ You can pick your own sound files, have a different sound when a progress bar st
 
 ## What it does
 
-* Plays a pleasant sound instead of NVDA's beep whenever a progress bar moves. Choose from 15 built-in sounds or use your own sound files.
+* Plays a pleasant sound instead of NVDA's beep whenever a progress bar moves. Choose from 14 built-in sounds or use your own sound files.
 * The pitch of the sound goes up as the progress goes up, so you can hear how far along it is.
 * Optional: the sound moves from your left ear to your right ear as the progress goes up.
 * Optional separate sounds for when a progress bar starts, reaches 50%, and reaches 100%.
 * When a progress bar finishes, NVDA says what finished, for example "Download complete", "Extraction complete", "Copy complete" or "Installation complete".
-* When several progress bars move at the same time, the sounds stay clean instead of choppy. You can also let them overlap.
+* When several progress bars move at the same time, the sounds stay clean instead of choppy. You can also let them overlap. A single progress bar always follows the beep interval set in NVDA's Object Presentation settings.
 
 ## Getting started
 
@@ -31,8 +31,8 @@ The add-on works straight away, so you don't have to change anything: progress p
   * Finished sound: plays when a progress bar reaches 100%.
 * **Sound**: choose the sound. Each sound plays as you move through the list, so you can hear it before choosing. The choices are:
   * None. For the start, halfway and finished sounds, the regular sound plays instead. For the regular sound, progress is silent and only the start, halfway and finished sounds play.
-  * One of the 15 built-in sounds:
-    * Good for progress: Water drop, Soft tick, Marimba, Bubble, Heartbeat, Kalimba, Glass tap, Wood knock, Soft pluck and Pop.
+  * One of the 14 built-in sounds:
+    * Good for progress: Water drop, Soft tick, Marimba, Bubble, Kalimba, Glass tap, Wood knock, Soft pluck and Pop.
     * Good for when a progress bar starts: Rising whoosh.
     * Good for the halfway point: Ding-dong.
     * Good for when a progress bar finishes: Success chime, Single bell and Level complete.
@@ -67,7 +67,8 @@ NVDA 2022.1 or later, including NVDA 2023.3 for Windows 7 and 8. The add-on was 
 
 ### Version 1.1.0
 
-* 10 new built-in sounds: Heartbeat, Kalimba, Glass tap, Wood knock, Soft pluck, Pop, Rising whoosh, Ding-dong, Single bell and Level complete.
+* 9 new built-in sounds: Kalimba, Glass tap, Wood knock, Soft pluck, Pop, Rising whoosh, Ding-dong, Single bell and Level complete.
+* Fixed: with a fast progress bar, some sounds were skipped, so the beep interval set in NVDA (1% by default) was not followed. Each progress bar now plays a sound for every step NVDA would beep for.
 * Works with NVDA 2026.2.
 
 ### Version 1.0.0

@@ -133,21 +133,6 @@ def mix(length, *parts):
 	return out
 
 
-def heartbeat():
-	"""A soft heartbeat, "thump-thump". Low thuds with a little higher body so small speakers play them."""
-
-	def thump(level):
-		out = []
-		phase = 0.0
-		for t in times(0.16):
-			phase += 2 * math.pi * (70 + 80 * math.exp(-t / 0.02)) / RATE
-			body = math.sin(phase) + 0.6 * math.sin(2 * phase) + 0.3 * math.sin(3 * phase)
-			out.append(level * body * min(1.0, t / 0.004) * math.exp(-t / 0.045))
-		return out
-
-	return mix(0.42, (0.0, thump(1.0)), (0.2, thump(0.7)))
-
-
 def kalimba(freq=659.26):
 	"""A thumb piano note: a pure, sweet tone with a quick metallic overtone at the start."""
 	out = []
@@ -253,7 +238,6 @@ def main():
 	write("marimba", marimba())
 	write("bubble", bubble())
 	write("chime", chime(), peak=0.5)
-	write("heartbeat", heartbeat(), peak=0.75)
 	write("kalimba", kalimba())
 	write("glass", glassTap(), peak=0.45)
 	write("wood", woodKnock(), peak=0.85)
