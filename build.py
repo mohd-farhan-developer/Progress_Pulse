@@ -2,6 +2,10 @@
 
 Run: python build.py
 Print the version: python build.py --version
+Update the translation template for translators: python build.py --pot
+
+Translations: a translator's addon/locale/<language>/LC_MESSAGES/nvda.po is turned into the nvda.mo file NVDA
+reads, and addon/doc/<language>/readme.md becomes that language's help page.
 
 The add-on's details (name, description, version and so on) are in addon/manifest.ini.
 The Add-on Store shows them, so edit that file before each release.
@@ -14,10 +18,16 @@ import re
 import sys
 import zipfile
 
+from tools.translations import compilePo, makePot
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 ADDON_DIR = os.path.join(ROOT, "addon")
 MANIFEST = os.path.join(ADDON_DIR, "manifest.ini")
+PLUGIN_SOURCE = os.path.join(ADDON_DIR, "globalPlugins", "progressPulse", "__init__.py")
 SOUNDS_DIR = os.path.join(ADDON_DIR, "globalPlugins", "progressPulse", "sounds")
+POT_FILE = os.path.join(ROOT, "progressPulse.pot")
+# Translation sources that are turned into other files instead of being packaged as they are.
+SOURCE_ONLY = (".po", ".pot", ".md")
 REQUIRED_KEYS = (
 	"name",
 	"summary",
@@ -67,7 +77,7 @@ def _inline(text):
 	return re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', text)
 
 
-def markdownToHtml(markdown, title):
+def markdownToHtml(markdown, title, language="en"):
 	"""Enough Markdown for the readme: headings, paragraphs, lists, bold, code and links."""
 	body = []
 	paragraph = []
@@ -112,7 +122,7 @@ def markdownToHtml(markdown, title):
 	flushParagraph()
 	closeList()
 	return (
-		'<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+		f'<!DOCTYPE html>\n<html lang="{language.replace("_", "-")}">\n<head>\n<meta charset="utf-8">\n'
 		f"<title>{html.escape(title)}</title>\n</head>\n<body>\n" + "\n".join(body) + "\n</body>\n</html>\n"
 	)
 
@@ -121,6 +131,11 @@ def main():
 	manifest = readManifest()
 	if "--version" in sys.argv:
 		print(manifest["version"])
+		return
+	if "--pot" in sys.argv:
+		project = f"{manifest['summary']} {manifest['version']}"
+		count = makePot(PLUGIN_SOURCE, "globalPlugins/progressPulse/__init__.py", POT_FILE, project)
+		print(f"Wrote {count} texts to {POT_FILE}")
 		return
 	checkManifest(manifest)
 	if not os.path.isdir(SOUNDS_DIR) or not os.listdir(SOUNDS_DIR):
@@ -135,8 +150,26 @@ def main():
 			dirs[:] = sorted(d for d in dirs if d != "__pycache__")
 			for file in sorted(files):
 				full = os.path.join(folder, file)
-				z.write(full, os.path.relpath(full, ADDON_DIR).replace(os.sep, "/"))
+				relative = os.path.relpath(full, ADDON_DIR).replace(os.sep, "/")
+				if file.endswith(SOURCE_ONLY):
+					addTranslation(z, full, relative, manifest)
+					continue
+				z.write(full, relative)
 	print(f"Built {out}")
+
+
+def addTranslation(z, full, relative, manifest):
+	"""Package a translation: compile .po files and turn translated readme.md files into help pages."""
+	parts = relative.split("/")
+	if relative.endswith(".po") and parts[0] == "locale" and len(parts) == 4:
+		mo, catalog = compilePo(full)
+		z.writestr(relative[: -len(".po")] + ".mo", mo)
+		print(f"Translation {parts[1]}: {len(catalog) - 1} texts")
+	elif relative.endswith(".md") and parts[0] == "doc" and len(parts) == 3 and manifest.get("docFileName"):
+		language = parts[1]
+		with open(full, encoding="utf-8-sig") as f:
+			page = markdownToHtml(f.read(), manifest["summary"], language)
+		z.writestr(f"doc/{language}/{manifest['docFileName']}", page.encode("utf-8"))
 
 
 if __name__ == "__main__":

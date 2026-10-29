@@ -59,11 +59,22 @@ The add-on works straight away, so you don't have to change anything: progress p
 
 You can set a key to turn the add-on's sounds on and off quickly. Open the NVDA menu, go to Preferences, then Input Gestures, open the "Progress Pulse" category and add a gesture to "Turns Progress Pulse sounds on or off".
 
+## Translations
+
+Progress Pulse is available in English and Simplified Chinese (thanks to Alan86024).
+
+To translate it into your language, open `progressPulse.pot` from the [GitHub repository](https://github.com/mohd-farhan-developer/Progress_Pulse) in a translation editor such as Poedit, and save your translation as `addon/locale/<language>/LC_MESSAGES/nvda.po`. You can also translate this help page as `addon/doc/<language>/readme.md`. Then send a pull request on GitHub.
+
 ## Requirements
 
 NVDA 2022.1 or later, including NVDA 2023.3 for Windows 7 and 8. The add-on was built against NVDA 2025.3 and 2026.2.
 
 ## Changes
+
+### Version 1.1.2
+
+* New: Simplified Chinese translation, by Alan (Alan86024). Thank you!
+* Translators can now add more languages: see Translations above.
 
 ### Version 1.1.1
 

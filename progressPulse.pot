@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Progress Pulse 1.1.2\n"
+"POT-Creation-Date: 2026-10-29 08:30+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:62
+msgid "Water drop"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:64
+msgid "Soft tick"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:66
+msgid "Marimba"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:68
+msgid "Bubble"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:70
+msgid "Kalimba"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:72
+msgid "Glass tap"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:74
+msgid "Wood knock"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:76
+msgid "Soft pluck"
+msgstr ""
+
+#. Translators: name of a built-in sound.
+#: globalPlugins/progressPulse/__init__.py:78
+msgid "Pop"
+msgstr ""
+
+#. Translators: name of a built-in sound, suited to when a progress bar starts.
+#: globalPlugins/progressPulse/__init__.py:80
+msgid "Rising whoosh"
+msgstr ""
+
+#. Translators: name of a built-in sound, suited to the halfway point.
+#: globalPlugins/progressPulse/__init__.py:82
+msgid "Ding-dong"
+msgstr ""
+
+#. Translators: name of a built-in sound, suited to when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:84
+msgid "Success chime"
+msgstr ""
+
+#. Translators: name of a built-in sound, suited to when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:86
+msgid "Single bell"
+msgstr ""
+
+#. Translators: name of a built-in sound, suited to when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:88
+msgid "Level complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:106
+msgid "Uninstall complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:108
+msgid "Download complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:110
+msgid "Upload complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:112
+msgid "Extraction complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:114
+msgid "Compression complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:116
+msgid "Installation complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:118
+msgid "Update complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:120
+msgid "Copy complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:122
+msgid "Move complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:124
+msgid "Delete complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:126
+msgid "Conversion complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:128
+msgid "Export complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes.
+#: globalPlugins/progressPulse/__init__.py:130
+msgid "Scan complete"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes in a window that isn't recognised. {title} is the window's title.
+#: globalPlugins/progressPulse/__init__.py:377
+msgid "Progress complete, {title}"
+msgstr ""
+
+#. Translators: announced when a progress bar finishes in a window that isn't recognised.
+#: globalPlugins/progressPulse/__init__.py:379
+msgid "Progress complete"
+msgstr ""
+
+#. Translators: an item in the "Sound to change" list.
+#: globalPlugins/progressPulse/__init__.py:526
+msgid "Regular sound (plays as progress goes up)"
+msgstr ""
+
+#. Translators: an item in the "Sound to change" list.
+#: globalPlugins/progressPulse/__init__.py:528
+msgid "Start sound (when a progress bar begins)"
+msgstr ""
+
+#. Translators: an item in the "Sound to change" list.
+#: globalPlugins/progressPulse/__init__.py:530
+msgid "Halfway sound (at 50%)"
+msgstr ""
+
+#. Translators: an item in the "Sound to change" list.
+#: globalPlugins/progressPulse/__init__.py:532
+msgid "Finished sound (at 100%)"
+msgstr ""
+
+#. Translators: a choice for how much the pitch rises with progress.
+#: globalPlugins/progressPulse/__init__.py:536
+msgid "No change"
+msgstr ""
+
+#. Translators: a choice for how much the pitch rises with progress.
+#: globalPlugins/progressPulse/__init__.py:538
+msgid "A little"
+msgstr ""
+
+#. Translators: a choice for how much the pitch rises with progress.
+#: globalPlugins/progressPulse/__init__.py:540
+msgid "Medium"
+msgstr ""
+
+#. Translators: a choice for how much the pitch rises with progress.
+#: globalPlugins/progressPulse/__init__.py:542
+msgid "A lot"
+msgstr ""
+
+#. Translators: title of the add-on's settings panel.
+#: globalPlugins/progressPulse/__init__.py:548 globalPlugins/progressPulse/__init__.py:719 globalPlugins/progressPulse/__init__.py:807
+msgid "Progress Pulse"
+msgstr ""
+
+#. Translators: checkbox in the settings panel.
+#: globalPlugins/progressPulse/__init__.py:556
+msgid "&Play my sounds for progress bars instead of NVDA's beeps"
+msgstr ""
+
+#. Translators: label of the list choosing which sound to change.
+#: globalPlugins/progressPulse/__init__.py:568
+msgid "Sound to &change:"
+msgstr ""
+
+#. Translators: label of the list of sounds. Each sound plays when it is selected.
+#: globalPlugins/progressPulse/__init__.py:576
+msgid "&Sound:"
+msgstr ""
+
+#. Translators: button that opens a dialog to choose a sound file.
+#: globalPlugins/progressPulse/__init__.py:583
+msgid "C&hoose your own file..."
+msgstr ""
+
+#. Translators: button that plays the selected sound.
+#: globalPlugins/progressPulse/__init__.py:586
+msgid "Pla&y"
+msgstr ""
+
+#. Translators: label of the list choosing how much the pitch rises with progress.
+#: globalPlugins/progressPulse/__init__.py:593
+msgid "How much the p&itch rises as progress goes up:"
+msgstr ""
+
+#. Translators: checkbox in the settings panel.
+#: globalPlugins/progressPulse/__init__.py:601
+msgid "Move the sound from &left ear to right ear as progress goes up"
+msgstr ""
+
+#. Translators: label of a spin box.
+#: globalPlugins/progressPulse/__init__.py:607
+msgid "&Volume (0 to 100):"
+msgstr ""
+
+#. Translators: checkbox in the settings panel. When off, a new sound stops the previous one.
+#: globalPlugins/progressPulse/__init__.py:618
+msgid "Let sounds &overlap when several progress bars move at the same time"
+msgstr ""
+
+#. Translators: checkbox in the settings panel.
+#: globalPlugins/progressPulse/__init__.py:627
+msgid "&Announce when a progress bar finishes, for example \"Download complete\""
+msgstr ""
+
+#. Translators: button that plays all the sounds from 0 to 100 percent.
+#: globalPlugins/progressPulse/__init__.py:633
+msgid "&Test all sounds"
+msgstr ""
+
+#. Translators: an item in the sound list for the regular sound.
+#: globalPlugins/progressPulse/__init__.py:645
+msgid "None (silent, only the start, halfway and finished sounds play)"
+msgstr ""
+
+#. Translators: an item in the sound list for the start, halfway and finished sounds.
+#: globalPlugins/progressPulse/__init__.py:648
+msgid "None (the regular sound plays)"
+msgstr ""
+
+#. Translators: an item in the sound list when no own file has been chosen yet.
+#: globalPlugins/progressPulse/__init__.py:652
+msgid "Your own file (use the Choose your own file button)"
+msgstr ""
+
+#. Translators: an item in the sound list. {file} is the file's name.
+#: globalPlugins/progressPulse/__init__.py:655
+msgid "Your own file: {file}"
+msgstr ""
+
+#. Translators: an item in the sound list when the chosen file no longer exists.
+#: globalPlugins/progressPulse/__init__.py:658
+msgid "Your own file: {file} (file not found)"
+msgstr ""
+
+#. Translators: title of the file dialog.
+#: globalPlugins/progressPulse/__init__.py:703
+msgid "Choose a sound"
+msgstr ""
+
+#. Translators: file type filter in the file dialog.
+#: globalPlugins/progressPulse/__init__.py:706
+msgid "WAV sound files (*.wav)"
+msgstr ""
+
+#. Translators: error shown when the chosen file can't be used. {error} is the reason.
+#: globalPlugins/progressPulse/__init__.py:717
+msgid ""
+"This file can't be used.\n"
+"\n"
+"{error}\n"
+"\n"
+"Please choose a WAV sound file."
+msgstr ""
+
+#. Translators: description of the command in Input Gestures.
+#: globalPlugins/progressPulse/__init__.py:805
+msgid "Turns Progress Pulse sounds on or off (off uses NVDA's normal beeps)"
+msgstr ""
+
+#. Translators: reported when the add-on's sounds are turned on.
+#: globalPlugins/progressPulse/__init__.py:814
+msgid "Progress Pulse sounds on"
+msgstr ""
+
+#. Translators: reported when the add-on's sounds are turned off.
+#: globalPlugins/progressPulse/__init__.py:817
+msgid "Progress Pulse sounds off, using NVDA beeps"
+msgstr ""
