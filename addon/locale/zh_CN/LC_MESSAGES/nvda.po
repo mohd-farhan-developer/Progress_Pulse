@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ProgressPulse\n"
-"POT-Creation-Date: 2026-10-22 19:26+0300\n"
-"PO-Revision-Date: 2026-10-28 00:03+0800\n"
+"POT-Creation-Date: 2026-10-29 18:56+0800\n"
+"PO-Revision-Date: 2026-10-29 19:02+0800\n"
 "Last-Translator: Alan <alanzhangmw@outlook.com>\n"
 "Language-Team: Chinese (Simplified)\n"
 "Language: zh_CN\n"
@@ -25,189 +25,225 @@ msgstr "轻柔滴答"
 
 #: progressPulse/__init__.py:66
 msgid "Marimba"
-msgstr "马林巴"
+msgstr "马林巴琴"
 
 #: progressPulse/__init__.py:68
 msgid "Bubble"
 msgstr "气泡"
 
 #: progressPulse/__init__.py:70
+msgid "Kalimba"
+msgstr "卡林巴琴"
+
+#: progressPulse/__init__.py:72
+msgid "Glass tap"
+msgstr "玻璃敲击"
+
+#: progressPulse/__init__.py:74
+msgid "Wood knock"
+msgstr "木块敲击"
+
+#: progressPulse/__init__.py:76
+msgid "Soft pluck"
+msgstr "轻柔弹拨"
+
+#: progressPulse/__init__.py:78
+msgid "Pop"
+msgstr "啵声"
+
+#: progressPulse/__init__.py:80
+msgid "Rising whoosh"
+msgstr "上升呼啸"
+
+#: progressPulse/__init__.py:82
+msgid "Ding-dong"
+msgstr "叮咚"
+
+#: progressPulse/__init__.py:84
 msgid "Success chime"
 msgstr "成功钟声"
 
-#: progressPulse/__init__.py:87
+#: progressPulse/__init__.py:86
+msgid "Single bell"
+msgstr "单铃声"
+
+#: progressPulse/__init__.py:88
+msgid "Level complete"
+msgstr "级别完成"
+
+#: progressPulse/__init__.py:106
 msgid "Uninstall complete"
 msgstr "卸载完成"
 
-#: progressPulse/__init__.py:89
+#: progressPulse/__init__.py:108
 msgid "Download complete"
 msgstr "下载完成"
 
-#: progressPulse/__init__.py:91
+#: progressPulse/__init__.py:110
 msgid "Upload complete"
 msgstr "上传完成"
 
-#: progressPulse/__init__.py:93
+#: progressPulse/__init__.py:112
 msgid "Extraction complete"
 msgstr "解压完成"
 
-#: progressPulse/__init__.py:95
+#: progressPulse/__init__.py:114
 msgid "Compression complete"
 msgstr "压缩完成"
 
-#: progressPulse/__init__.py:97
+#: progressPulse/__init__.py:116
 msgid "Installation complete"
 msgstr "安装完成"
 
-#: progressPulse/__init__.py:99
+#: progressPulse/__init__.py:118
 msgid "Update complete"
 msgstr "更新完成"
 
-#: progressPulse/__init__.py:101
+#: progressPulse/__init__.py:120
 msgid "Copy complete"
 msgstr "复制完成"
 
-#: progressPulse/__init__.py:103
+#: progressPulse/__init__.py:122
 msgid "Move complete"
 msgstr "移动完成"
 
-#: progressPulse/__init__.py:105
+#: progressPulse/__init__.py:124
 msgid "Delete complete"
 msgstr "删除完成"
 
-#: progressPulse/__init__.py:107
+#: progressPulse/__init__.py:126
 msgid "Conversion complete"
 msgstr "转换完成"
 
-#: progressPulse/__init__.py:109
+#: progressPulse/__init__.py:128
 msgid "Export complete"
 msgstr "导出完成"
 
-#: progressPulse/__init__.py:111
+#: progressPulse/__init__.py:130
 msgid "Scan complete"
 msgstr "扫描完成"
 
-#: progressPulse/__init__.py:354
+#: progressPulse/__init__.py:377
 #, python-brace-format
 msgid "Progress complete, {title}"
 msgstr "进度完成，{title}"
 
-#: progressPulse/__init__.py:356
+#: progressPulse/__init__.py:379
 msgid "Progress complete"
 msgstr "进度完成"
 
-#: progressPulse/__init__.py:499
+#: progressPulse/__init__.py:526
 msgid "Regular sound (plays as progress goes up)"
 msgstr "常规声音（随着进度增长而播放）"
 
-#: progressPulse/__init__.py:501
+#: progressPulse/__init__.py:528
 msgid "Start sound (when a progress bar begins)"
 msgstr "开始声音（当进度条开始时）"
 
-#: progressPulse/__init__.py:503
+#: progressPulse/__init__.py:530
 msgid "Halfway sound (at 50%)"
 msgstr "半程声音（在 50% 时）"
 
-#: progressPulse/__init__.py:505
+#: progressPulse/__init__.py:532
 msgid "Finished sound (at 100%)"
 msgstr "结束声音（在 100% 时）"
 
-#: progressPulse/__init__.py:509
+#: progressPulse/__init__.py:536
 msgid "No change"
 msgstr "无变化"
 
-#: progressPulse/__init__.py:511
+#: progressPulse/__init__.py:538
 msgid "A little"
 msgstr "少许"
 
-#: progressPulse/__init__.py:513
+#: progressPulse/__init__.py:540
 msgid "Medium"
 msgstr "中等"
 
-#: progressPulse/__init__.py:515
+#: progressPulse/__init__.py:542
 msgid "A lot"
 msgstr "大量"
 
-#: progressPulse/__init__.py:521 progressPulse/__init__.py:692
-#: progressPulse/__init__.py:780
+#: progressPulse/__init__.py:548 progressPulse/__init__.py:719
+#: progressPulse/__init__.py:807
 msgid "Progress Pulse"
 msgstr "进度脉冲"
 
-#: progressPulse/__init__.py:529
+#: progressPulse/__init__.py:556
 msgid "&Play my sounds for progress bars instead of NVDA's beeps"
 msgstr "播放我自己的进度条声音，而不是 NVDA 的蜂鸣音(&P)"
 
-#: progressPulse/__init__.py:541
+#: progressPulse/__init__.py:568
 msgid "Sound to &change:"
 msgstr "要更改的声音(&C)："
 
-#: progressPulse/__init__.py:549
+#: progressPulse/__init__.py:576
 msgid "&Sound:"
 msgstr "声音(&S)："
 
-#: progressPulse/__init__.py:556
+#: progressPulse/__init__.py:583
 msgid "C&hoose your own file..."
 msgstr "选择自定义文件(&H)..."
 
-#: progressPulse/__init__.py:559
+#: progressPulse/__init__.py:586
 msgid "Pla&y"
 msgstr "播放(&Y)"
 
-#: progressPulse/__init__.py:566
+#: progressPulse/__init__.py:593
 msgid "How much the p&itch rises as progress goes up:"
 msgstr "随着进度上升音调升高的幅度(&I)："
 
-#: progressPulse/__init__.py:574
+#: progressPulse/__init__.py:601
 msgid "Move the sound from &left ear to right ear as progress goes up"
 msgstr "随着进度上升将声音从左耳移动到右耳(&L)"
 
-#: progressPulse/__init__.py:580
+#: progressPulse/__init__.py:607
 msgid "&Volume (0 to 100):"
 msgstr "音量（0 到 100）(&V)："
 
-#: progressPulse/__init__.py:591
+#: progressPulse/__init__.py:618
 msgid "Let sounds &overlap when several progress bars move at the same time"
 msgstr "当多个进度条同时移动时允许声音重叠(&O)"
 
-#: progressPulse/__init__.py:600
+#: progressPulse/__init__.py:627
 msgid "&Announce when a progress bar finishes, for example \"Download complete\""
 msgstr "当进度条完成时进行播报，例如“下载完成”(&A)"
 
-#: progressPulse/__init__.py:606
+#: progressPulse/__init__.py:633
 msgid "&Test all sounds"
 msgstr "测试所有声音(&T)"
 
-#: progressPulse/__init__.py:618
+#: progressPulse/__init__.py:645
 msgid "None (silent, only the start, halfway and finished sounds play)"
 msgstr "无（静音，仅播放开始、半程和结束声音）"
 
-#: progressPulse/__init__.py:621
+#: progressPulse/__init__.py:648
 msgid "None (the regular sound plays)"
 msgstr "无（播放常规声音）"
 
-#: progressPulse/__init__.py:625
+#: progressPulse/__init__.py:652
 msgid "Your own file (use the Choose your own file button)"
 msgstr "您自己的文件（使用“选择自定义文件”按钮）"
 
-#: progressPulse/__init__.py:628
+#: progressPulse/__init__.py:655
 #, python-brace-format
 msgid "Your own file: {file}"
 msgstr "您自己的文件：{file}"
 
-#: progressPulse/__init__.py:631
+#: progressPulse/__init__.py:658
 #, python-brace-format
 msgid "Your own file: {file} (file not found)"
 msgstr "您自己的文件：{file}（未找到文件）"
 
-#: progressPulse/__init__.py:676
+#: progressPulse/__init__.py:703
 msgid "Choose a sound"
 msgstr "选择声音"
 
-#: progressPulse/__init__.py:679
+#: progressPulse/__init__.py:706
 msgid "WAV sound files (*.wav)"
 msgstr "WAV 声音文件 (*.wav)"
 
-#: progressPulse/__init__.py:690
+#: progressPulse/__init__.py:717
 #, python-brace-format
 msgid ""
 "This file can't be used.\n"
@@ -222,14 +258,14 @@ msgstr ""
 "\n"
 "请选择一个 WAV 声音文件。"
 
-#: progressPulse/__init__.py:778
+#: progressPulse/__init__.py:805
 msgid "Turns Progress Pulse sounds on or off (off uses NVDA's normal beeps)"
 msgstr "开启或关闭进度脉冲声音（关闭时使用 NVDA 的常规蜂鸣音）"
 
-#: progressPulse/__init__.py:787
+#: progressPulse/__init__.py:814
 msgid "Progress Pulse sounds on"
 msgstr "进度脉冲声音已开启"
 
-#: progressPulse/__init__.py:790
+#: progressPulse/__init__.py:817
 msgid "Progress Pulse sounds off, using NVDA beeps"
 msgstr "进度脉冲声音已关闭，正在使用 NVDA 蜂鸣音"
