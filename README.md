@@ -71,6 +71,10 @@ NVDA 2022.1 or later, including NVDA 2023.3 for Windows 7 and 8. The add-on was 
 
 ## Changes
 
+### Version 1.1.3
+
+* The Simplified Chinese translation is now complete: every message and the Chinese help page, by Alan (Alan86024). Thank you!
+
 ### Version 1.1.2
 
 * New: Simplified Chinese translation, by Alan (Alan86024). Thank you!
